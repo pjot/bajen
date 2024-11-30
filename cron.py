@@ -1,6 +1,10 @@
 import tickets
 import push
 import config
+from datetime import datetime
+
+print("---")
+print(f"Running cron at {datetime.now()}")
 
 stored_games = tickets.read()
 live_games = tickets.from_site(config.tracked_slugs())

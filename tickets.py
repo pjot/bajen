@@ -39,7 +39,7 @@ def read() -> dict[str, Game]:
 
 def save(games: list[Game]):
     with open("data.json", "w") as f:
-        json_data = {g.slug: g.model_dump() for g in games},
+        json_data = {g.slug: g.dict() for g in games},
         json.dump(json_data,f, indent=4)
 
 

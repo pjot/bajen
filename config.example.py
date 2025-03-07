@@ -1,8 +1,10 @@
 def push_token():
     return ""
 
+
 def push_user_key():
     return ""
+
 
 def tracked_slugs():
     return [

@@ -3,6 +3,7 @@ import config
 
 URL = "https://api.pushover.net/1/messages.json"
 
+
 def send(title: str, message: str):
     body = {
         "token": config.push_token(),

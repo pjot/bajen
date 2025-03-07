@@ -11,12 +11,14 @@ def test_extracts_games(mocked_get):
         mocked_get.return_value.json.return_value = json.load(f)
 
     test_slug = "2024-12-12-20-00-uefa-women-s-champions-league-hammarby-fc-barcelona"
-    expected = [tickets.Game(
-        slug=test_slug,
-        home="Hammarby IF",
-        away="FC Barcelona",
-        tickets=21800,
-    )]
+    expected = [
+        tickets.Game(
+            slug=test_slug,
+            home="Hammarby IF",
+            away="FC Barcelona",
+            tickets=21800,
+        )
+    ]
     assert tickets.from_site([test_slug]) == expected
 
 

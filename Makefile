@@ -18,4 +18,4 @@ mypy:
 	$(RUN) mypy .
 
 cron:
-	$(RUN) latest python cron.py
+	$(RUN) python cron.py

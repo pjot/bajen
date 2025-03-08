@@ -1,1 +1,2 @@
-*/10 * * * * python3 /path/to/code/cron.py
+*/10 * * * * cd /path/to/bajen && make cron >> /var/log/bajen.log 2>&1
+

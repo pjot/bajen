@@ -3,7 +3,7 @@ from typing import Generator
 
 import tickets
 import push
-import config
+import slugs
 
 
 def make_messages(
@@ -29,14 +29,28 @@ def make_messages(
             )
 
 
-print("---")
-print(f"Running cron at {datetime.now()}")
+def run():
+    print("---")
+    print(f"Running cron at {datetime.now()}")
 
-stored_games = tickets.read()
-live_games = tickets.from_site(config.tracked_slugs())
-tickets.save(live_games)
+    tracked_slugs = slugs.get()
+    if not tracked_slugs:
+        print("No tracked slugs.")
+        return
 
-for message in make_messages(stored_games, live_games):
-    push.send(message)
-else:
-    print("No increase, no push")
+    print("Tracked slugs:")
+    for s in tracked_slugs:
+        print(s)
+
+    stored_games = tickets.read()
+    live_games = tickets.from_site(slugs.get())
+    tickets.save(live_games)
+
+    for message in make_messages(stored_games, live_games):
+        push.send(message)
+    else:
+        print("No increase, no push")
+
+
+if __name__ == "__main__":
+    run()

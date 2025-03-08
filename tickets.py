@@ -3,6 +3,7 @@ import json
 from pydantic import BaseModel
 
 URL = "https://hammarbyfotboll.se/page-data/matcher/page-data.json"
+DATA_FILE = "data/games.json"
 
 
 class Game(BaseModel):
@@ -33,7 +34,7 @@ def from_site(slugs: list[str]) -> list[Game]:
 
 def read() -> dict[str, Game]:
     try:
-        with open("data.json") as f:
+        with open(DATA_FILE) as f:
             games = json.load(f)
             return {slug: Game(**g) for slug, g in games.items()}
     except:
@@ -41,6 +42,6 @@ def read() -> dict[str, Game]:
 
 
 def save(games: list[Game]):
-    with open("data.json", "w") as f:
+    with open(DATA_FILE, "w") as f:
         json_data = {g.slug: g.model_dump() for g in games}
         json.dump(json_data, f, indent=4)

@@ -1,7 +1,7 @@
-RUN=docker run -v $(PWD):/app bajen:latest
+RUN=docker compose run api
 
 build:
-	docker build . -t bajen:latest
+	docker compose build api
 
 test:
 	$(RUN) pytest -v tests/
@@ -16,6 +16,9 @@ black:
 
 mypy:
 	$(RUN) mypy .
+
+api:
+	docker compose up -d
 
 cron:
 	$(RUN) python cron.py

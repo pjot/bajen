@@ -1,4 +1,4 @@
-RUN=docker compose run api
+RUN=docker compose run --rm api
 
 build:
 	docker compose build api
